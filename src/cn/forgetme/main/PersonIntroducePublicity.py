@@ -2,11 +2,14 @@
 
 import Queue
 import re
-import requests
 import urllib2
-from bs4 import BeautifulSoup
 import base64
+import requests
+from bs4 import BeautifulSoup
 import sys
+print sys.getdefaultencoding()
+# reload(sys)
+# sys.setdefaultencoding('utf-8')
 import datetime
 
 
@@ -25,13 +28,12 @@ def sp(url,data,lastdate):
         # print str(index)+":"+text
         # print text.encode('utf-8')
         print text[0:10]
-        if("丰景军"==text):
+        if('丰景军'==text.decode("utf-8")):
             print data["ToPage"]+"  "+text
             return True
         elif(lastdate==text[0:10]):
             return True
 def main():
-    reload(sys)
 
     now = datetime.datetime.now()
     delta = datetime.timedelta(days=1)
@@ -39,8 +41,8 @@ def main():
     print n_days.strftime('%Y-%m-%d %H:%M:%S')
     print n_days.strftime('%Y年%m月%d日')[0:18]
 
-    sys.setdefaultencoding('utf-8')
-    print "你好".encode('utf-8')
+    
+    print "你好"
     for page in range(1,20):
         data = {'__EVENTTARGET': 'LinkButton1',
                 '__EVENTARGUMENT':'',
